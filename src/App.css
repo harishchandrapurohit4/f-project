@@ -1,38 +1,147 @@
-.App {
-  text-align: center;
+
+/* Typography base */
+body {
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  color: #333;
+  background-color: #edefee;
+  line-height: 1.6;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Headings */
+h1 {
+  font-size: 2.5rem;
+  color: #5e4949;
+  margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+h2 {
+  font-size: 2rem;
+  color: #495e57;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h4, h5, h6 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraph */
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Span (highlight text) */
+span {
+  color: #f4ce14;
+  font-weight: 600;
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+/* Main content area */
+main {
+  display: flex;
+  flex: 1;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+/* Columns */
+.section {
+  flex: 1;
+  padding: 1rem;
+  background-color: #edefee;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Navigation container */
+nav {
+  background-color: #495e57;
+  padding: 1rem 0;
+}
+
+/* Navigation list */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* List items */
+nav li {
+  font-size: 1rem;
+}
+
+/* Links */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Hover effect */
+nav a:hover {
+  color: #f4ce14;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+.image-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+.hero {
+  background-color: #495e57;
+  color: white;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hero button {
+  background-color: #f4ce14;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
 }

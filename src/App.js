@@ -1,15 +1,15 @@
-import Header from './components/header';
-import Nav from './components/nav';
-import Main from './components/main';
-import Footer from './components/footer';
-
+import Nav from "./components/nav";
+import Main from "./components/main";
+import Footer from "./components/footer";
+import Header from "./components/header";
 function App() {
   return (
     <>
-      <Header />
+    <Header />
       <Nav />
       <Main />
       <Footer />
+      
     </>
   );
 }
