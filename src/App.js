@@ -1,16 +1,13 @@
-import Nav from "./components/nav";
-import Main from "./components/main";
-import Footer from "./components/footer";
-import Header from "./components/header";
+import { Routes, Route } from "react-router-dom";
+import Main from "./components/Main";
+import ConfirmedBooking from "./components/ConfirmedBooking";
+
 function App() {
   return (
-    <>
-    <Header />
-      <Nav />
-      <Main />
-      <Footer />
-      
-    </>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/confirmed" element={<ConfirmedBooking />} />
+    </Routes>
   );
 }
 

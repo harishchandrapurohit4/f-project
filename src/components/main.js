@@ -1,14 +1,30 @@
-import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import BookingPage from "../pages/BookingPage";
+import { useNavigate } from "react-router-dom";
+import BookingForm from "./BookingForm";
+import { submitAPI, fetchAPI } from "../api";
+
+export function initializeTimes() {
+  return fetchAPI(new Date());
+}
+
+export function updateTimes(state, action) {
+  if (action.type === "UPDATE_TIMES") {
+    return fetchAPI(new Date(action.date));
+  }
+  return state;
+}
 
 function Main() {
+  const navigate = useNavigate();
+
+  function submitForm(formData) {
+    if (submitAPI(formData)) {
+      navigate("/confirmed");
+    }
+  }
+
   return (
     <main>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/booking" element={<BookingPage />} />
-      </Routes>
+      <BookingForm submitForm={submitForm} />
     </main>
   );
 }
