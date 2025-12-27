@@ -1,68 +1,97 @@
 import { useState } from "react";
 
-function BookingForm({ submitForm }) {
-  const [formData, setFormData] = useState({
-    date: "",
-    time: "",
-    guests: 1,
-    occasion: ""
-  });
+function BookingForm({
+  availableTimes = [],
+  dispatch,
+  submitForm,
+}) {
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [guests, setGuests] = useState(1);
+  const [occasion, setOccasion] = useState("");
 
-  function handleSubmit(e) {
+  const isFormValid = () => {
+    return (
+      date &&
+      time &&
+      guests >= 1 &&
+      guests <= 10 &&
+      occasion
+    );
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    submitForm(formData);
-  }
+
+    if (!isFormValid()) {
+      return;
+    }
+
+    submitForm({ date, time, guests, occasion });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="date">Choose date</label>
+      <label htmlFor="res-date">Choose date</label>
       <input
-        id="date"
         type="date"
-        value={formData.date}
-        onChange={(e) =>
-          setFormData({ ...formData, date: e.target.value })
-        }
+        id="res-date"
+        value={date}
+        onChange={(e) => {
+          setDate(e.target.value);
+          if (dispatch) {
+            dispatch({
+              type: "UPDATE_TIMES",
+              date: e.target.value,
+            });
+          }
+        }}
+        required
       />
 
-      <label htmlFor="time">Choose time</label>
+      <label htmlFor="res-time">Choose time</label>
       <select
-        id="time"
-        value={formData.time}
-        onChange={(e) =>
-          setFormData({ ...formData, time: e.target.value })
-        }
+        id="res-time"
+        value={time}
+        onChange={(e) => setTime(e.target.value)}
+        required
       >
-        <option>17:00</option>
-        <option>18:00</option>
-        <option>19:00</option>
+        <option value="">Select time</option>
+        {availableTimes.map((t) => (
+          <option key={t} value={t}>
+            {t}
+          </option>
+        ))}
       </select>
 
       <label htmlFor="guests">Number of guests</label>
       <input
-        id="guests"
         type="number"
+        id="guests"
         min="1"
         max="10"
-        value={formData.guests}
-        onChange={(e) =>
-          setFormData({ ...formData, guests: e.target.value })
-        }
+        value={guests}
+        onChange={(e) => setGuests(Number(e.target.value))}
+        required
       />
 
       <label htmlFor="occasion">Occasion</label>
       <select
         id="occasion"
-        value={formData.occasion}
-        onChange={(e) =>
-          setFormData({ ...formData, occasion: e.target.value })
-        }
+        value={occasion}
+        onChange={(e) => setOccasion(e.target.value)}
+        required
       >
+        <option value="">Select occasion</option>
         <option>Birthday</option>
         <option>Anniversary</option>
       </select>
 
-      <button type="submit">Make Your reservation</button>
+      <input
+        type="submit"
+        value="Make Your Reservation"
+        disabled={!isFormValid()}
+      />
     </form>
   );
 }
